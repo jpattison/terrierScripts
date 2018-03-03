@@ -17,14 +17,16 @@ public class query {
 
     public static void main(String [ ] args) {
 
-        Collection coll = new TRECCollection("C:\\Users\\Jeremy\\Documents\\ResearchProjectData\\house_hansard\\2014");
+        System.setProperty("terrier.home", "/Users/jeremypattison/LargeDocument/ResearchProjectData/terrier-core-4.2/");
+
+        //Collection coll = new TRECCollection("C:\\Users\\Jeremy\\Documents\\ResearchProjectData\\house_hansard\\2014");
         // NOte note entirely sure about above, i dont think we're really using it properly
-        Indexer indexer = new BasicIndexer("C:\\Users\\Jeremy\\Documents\\ResearchProjectData\\terrier-core-4.2\\var\\index2", "data");
+        Indexer indexer = new BasicIndexer("/Users/jeremypattison/LargeDocument/ResearchProjectData/terrier-core-4.2/var/index", "data");
         //indexer.index(new Collection[]{ coll });
-        Index index = IndexOnDisk.createIndex("C:\\Users\\Jeremy\\Documents\\ResearchProjectData\\terrier-core-4.2\\var\\index2", "data");
+        Index index = IndexOnDisk.createIndex("/Users/jeremypattison/LargeDocument/ResearchProjectData/terrier-core-4.2/var/index", "data");
         System.out.println("We have indexed " + index.getCollectionStatistics().getNumberOfDocuments() + " documents");
         Manager queryingManager = new Manager(index);
-        SearchRequest srq = queryingManager.newSearchRequestFromQuery("tax");
+        SearchRequest srq = queryingManager.newSearchRequestFromQuery("banana");
         srq.addMatchingModel("Matching","BM25");
 
         //srq.setControl("start", sStart)
@@ -64,3 +66,4 @@ public class query {
 
     }
 }
+
